@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glowly &middot; Brands</title>
+    <!-- Favicon -->
+ <link rel="icon" href="assets/fav.jpeg" type="image/jpeg">
+    <!-- Tailwind CSS via CDN -->
+    <script src="tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: '#831843',
+                            secondary: '#BE185D',
+                            accent: '#EC4899',
+                            'accent-light': '#F472B6',
+                            'accent-dark': '#9D174D',
+                            blush: '#FDF2F8',
+                            rose: '#FB7185',
+                            gold: '#F59E0B',
+                            bg: '#FDF2F8',
+                            card: '#FFFFFF',
+                            dark: '#0F0A0A',
+                            'dark-card': '#1A0A0A',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Playfair Display"', 'serif'],
+                        body: ['"Inter"', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'float-slow': 'floatSlow 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'bounce-gentle': 'bounceGentle 2.5s ease-in-out infinite',
+                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        floatSlow: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
+                        slideUp: { '0%': { transform: 'translateY(40px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+                        bounceGentle: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
+                        pulseSoft: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.7' } },
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(circle at 20% 30%, rgba(244,114,182,0.08) 0%, transparent 60%)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (only for navigation, theme toggle, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FDF2F8;
+            color: #831843;
+        }
+        .dark body {
+            background: #0F0A0A;
+            color: #FDF2F8;
+        }
+        /* Scrollbar */
+        body::-webkit-scrollbar {
+            width: 6px;
+        }
+        body::-webkit-scrollbar-track {
+            background: #FDF2F8;
+            border-radius: 10px;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: #F472B6;
+            border-radius: 10px;
+        }
+        .dark body::-webkit-scrollbar-track {
+            background: #1A0A0A;
+        }
+
+        /* ====== CONSISTENT HEADER & FOOTER COLORS ====== */
+        .header-bg {
+            background: #FFFFFF;
+            border-color: #FCE7F3;
+        }
+        .dark .header-bg {
+            background: #1A0A0A;
+            border-color: #3A1A2A;
+        }
+        .footer-bg {
+            background: #FDF2F8;
+        }
+        .dark .footer-bg {
+            background: #1A0A0A;
+        }
+        .footer-border {
+            border-color: #EC4899;
+        }
+        .dark .footer-border {
+            border-color: #EC4899;
+        }
+
+        .logo-text {
+            color: #831843;
+        }
+        .dark .logo-text {
+            color: #FDF2F8;
+        }
+        .logo-accent {
+            color: #EC4899;
+        }
+        .dark .logo-accent {
+            color: #F472B6;
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            color: #831843;
+            transition: color 0.2s;
+            font-size: 0.875rem;
+        }
+        .dark .nav-link {
+            color: #FDF2F8;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: #F472B6;
+            transition: width 0.25s ease;
+            border-radius: 3px;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: #EC4899 !important;
+        }
+        .dark .nav-link.active {
+            color: #F472B6 !important;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 0.4rem 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: all 0.25s ease;
+            z-index: 1000;
+            border: 1px solid #FCE7F3;
+        }
+        .dark .dropdown-menu {
+            background: #1A0A0A;
+            border-color: #3A1A2A;
+        }
+        .dropdown-trigger:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1.2rem;
+            transition: all 0.2s;
+            color: #831843;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .dark .dropdown-item {
+            color: #FDF2F8;
+        }
+        .dropdown-item:hover {
+            background: #FDF2F8;
+            color: #EC4899;
+            padding-left: 1.5rem;
+        }
+        .dark .dropdown-item:hover {
+            background: #2A1A1A;
+            color: #F472B6;
+        }
+        .dropdown-item i {
+            margin-right: 0.75rem;
+            width: 20px;
+            color: #EC4899;
+        }
+
+        .mobile-menu {
+            background: #FFFFFF;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0 0 24px 24px;
+        }
+        .dark .mobile-menu {
+            background: #1A0A0A;
+        }
+        .mobile-menu.open {
+            max-height: 90vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .mobile-menu.open::-webkit-scrollbar {
+            display: none;
+        }
+
+        .btn-primary {
+            background: #EC4899;
+            color: #FFFFFF;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+        .btn-primary:hover {
+            background: #BE185D;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(236, 72, 153, 0.4);
+        }
+        .btn-outline {
+            border: 2px solid #EC4899;
+            color: #EC4899;
+            background: transparent;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover {
+            background: #EC4899;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+        .dark .btn-outline {
+            border-color: #F472B6;
+            color: #F472B6;
+        }
+        .dark .btn-outline:hover {
+            background: #F472B6;
+            color: #0F0A0A;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 100%);
+        }
+        .dark .hero-bg {
+            background: linear-gradient(135deg, #0F0A0A 0%, #1A0A0A 100%);
+        }
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(236, 72, 153, 0.06);
+            pointer-events: none;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(236, 72, 153, 0.12);
+            color: #EC4899;
+            padding: 0.25rem 1rem;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .dark .section-badge {
+            background: rgba(236, 72, 153, 0.2);
+            color: #F472B6;
+        }
+        .section-divider {
+            height: 3px;
+            width: 60px;
+            background: #EC4899;
+            margin: 0.5rem auto 1.5rem;
+            border-radius: 4px;
+        }
+
+        .toggle-spacing {
+            gap: 0.5rem;
+        }
+        @media (min-width: 768px) {
+            .toggle-spacing {
+                gap: 0.75rem;
+            }
+        }
+
+        .social-icon-footer {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(131, 24, 67, 0.1);
+            color: #831843;
+            transition: all 0.3s;
+        }
+        .dark .social-icon-footer {
+            background: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+        }
+        .social-icon-footer:hover {
+            background: #EC4899;
+            color: #FFFFFF;
+            transform: translateY(-3px);
+        }
+
+        .footer-text {
+            color: rgba(131, 24, 67, 0.7);
+        }
+        .dark .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .footer-text:hover {
+            color: #EC4899;
+        }
+        .dark .footer-text:hover {
+            color: #F472B6;
+        }
+        .footer-heading {
+            color: #831843;
+        }
+        .dark .footer-heading {
+            color: #FDF2F8;
+        }
+        .footer-copyright {
+            color: rgba(131, 24, 67, 0.5);
+        }
+        .dark .footer-copyright {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        [dir="rtl"] .ml-auto {
+            margin-left: 0 !important;
+            margin-right: auto !important;
+        }
+        [dir="rtl"] .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
+        [dir="rtl"] .dropdown-item i {
+            margin-right: 0;
+            margin-left: 0.75rem;
+        }
+        [dir="rtl"] .dropdown-item:hover {
+            padding-left: 1.2rem;
+            padding-right: 1.5rem;
+        }
+
+        /* Brands Page Specific Styles */
+        .brand-card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+            border: 1px solid #FCE7F3;
+            overflow: hidden;
+            text-align: center;
+        }
+        .dark .brand-card {
+            background: #1A0A0A;
+            border-color: #3A1A2A;
+        }
+        .brand-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(236, 72, 153, 0.25);
+            border-color: #EC4899;
+        }
+        .brand-card .brand-logo {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #831843;
+            background: #FDF2F8;
+            letter-spacing: 2px;
+        }
+        .dark .brand-card .brand-logo {
+            color: #FDF2F8;
+            background: #1A0A0A;
+        }
+        .brand-card .brand-body {
+            padding: 1.2rem 1.2rem 1.5rem;
+        }
+        .brand-card .brand-body h4 {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #831843;
+        }
+        .dark .brand-card .brand-body h4 {
+            color: #FDF2F8;
+        }
+        .brand-card .brand-body p {
+            font-size: 0.8rem;
+            color: rgba(131, 24, 67, 0.6);
+            margin-top: 0.2rem;
+        }
+        .dark .brand-card .brand-body p {
+            color: rgba(253, 242, 248, 0.6);
+        }
+        .brand-card .brand-body .btn-brand {
+            display: inline-block;
+            margin-top: 0.6rem;
+            padding: 0.3rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: #EC4899;
+            color: #FFFFFF;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .brand-card .brand-body .btn-brand:hover {
+            background: #BE185D;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+        .dark .brand-card .brand-body .btn-brand:hover {
+            background: #F472B6;
+            color: #0F0A0A;
+        }
+
+        .featured-brand-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            border: 1px solid #FCE7F3;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .dark .featured-brand-card {
+            background: #1A0A0A;
+            border-color: #3A1A2A;
+        }
+        .featured-brand-card:hover {
+            border-color: #EC4899;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px -8px rgba(236, 72, 153, 0.15);
+        }
+        .featured-brand-card .icon-wrap {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: rgba(236, 72, 153, 0.12);
+            color: #EC4899;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 0.8rem;
+        }
+        .dark .featured-brand-card .icon-wrap {
+            background: rgba(236, 72, 153, 0.2);
+            color: #F472B6;
+        }
+
+        .natural-brand-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            border: 1px solid #FCE7F3;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .dark .natural-brand-card {
+            background: #1A0A0A;
+            border-color: #3A1A2A;
+        }
+        .natural-brand-card:hover {
+            border-color: #EC4899;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px -8px rgba(236, 72, 153, 0.15);
+        }
+        .natural-brand-card .icon-wrap {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: rgba(236, 72, 153, 0.12);
+            color: #EC4899;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 0.8rem;
+        }
+        .dark .natural-brand-card .icon-wrap {
+            background: rgba(236, 72, 153, 0.2);
+            color: #F472B6;
+        }
+
+        /* ====== NEW TRENDING BRAND CARDS (no icons, clean text design) ====== */
+        .trending-card-new {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            border: 1px solid #FCE7F3;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .dark .trending-card-new {
+            background: #1A0A0A;
+            border-color: #3A1A2A;
+        }
+        .trending-card-new::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #EC4899, #F472B6, #EC4899);
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .trending-card-new:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px -8px rgba(236, 72, 153, 0.2);
+            border-color: #EC4899;
+        }
+        .trending-card-new .brand-name-large {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #831843;
+            letter-spacing: 4px;
+            font-family: 'Playfair Display', serif;
+        }
+        .dark .trending-card-new .brand-name-large {
+            color: #FDF2F8;
+        }
+        .trending-card-new .brand-tagline {
+            font-size: 0.85rem;
+            color: rgba(131, 24, 67, 0.6);
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+        .dark .trending-card-new .brand-tagline {
+            color: rgba(253, 242, 248, 0.6);
+        }
+        .trending-card-new .brand-badge {
+            display: inline-block;
+            background: rgba(236, 72, 153, 0.12);
+            color: #EC4899;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 0.15rem 0.8rem;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
+        }
+        .dark .trending-card-new .brand-badge {
+            background: rgba(236, 72, 153, 0.2);
+            color: #F472B6;
+        }
+        .trending-card-new .btn-trending {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: transparent;
+            color: #EC4899;
+            border: 2px solid #EC4899;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .trending-card-new .btn-trending:hover {
+            background: #EC4899;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+        .dark .trending-card-new .btn-trending {
+            color: #F472B6;
+            border-color: #F472B6;
+        }
+        .dark .trending-card-new .btn-trending:hover {
+            background: #F472B6;
+            color: #0F0A0A;
+        }
+        .trending-card-new .trending-number {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: rgba(131, 24, 67, 0.15);
+            letter-spacing: 1px;
+        }
+        .dark .trending-card-new .trending-number {
+            color: rgba(253, 242, 248, 0.1);
+        }
+
+        .all-brand-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 1.2rem;
+            border: 1px solid #FCE7F3;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .dark .all-brand-card {
+            background: #1A0A0A;
+            border-color: #3A1A2A;
+        }
+        .all-brand-card:hover {
+            border-color: #EC4899;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px -8px rgba(236, 72, 153, 0.15);
+        }
+        .all-brand-card .brand-short {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #831843;
+        }
+        .dark .all-brand-card .brand-short {
+            color: #FDF2F8;
+        }
+        .all-brand-card .brand-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(131, 24, 67, 0.7);
+            margin-top: 0.2rem;
+        }
+        .dark .all-brand-card .brand-name {
+            color: rgba(253, 242, 248, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======== NAVIGATION ======== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 header-bg border-b shadow-sm transition-colors">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex items-center justify-between h-20 md:h-22">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2.5 group shrink-0">
+                    <div class="w-10 h-10 bg-[#EC4899] rounded-xl flex items-center justify-center shadow-lg shadow-[#EC4899]/25 group-hover:scale-105 transition">
+                        <i class="fas fa-spa text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl md:text-2xl font-display font-extrabold tracking-tight logo-text">GLOW<span class="logo-accent">LY</span></span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden xl:flex items-center gap-1 lg:gap-2 ml-auto rtl:ml-0 rtl:mr-auto">
+                    <div class="dropdown-trigger relative">
+                        <button class="nav-link px-3 py-2 flex items-center gap-1">
+                            Home <i class="fas fa-chevron-down text-[10px] opacity-60"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="index.html"><i class="fas fa-home"></i> Home 1</a>
+                            <a class="dropdown-item" href="home2.html"><i class="fas fa-home"></i> Home 2</a>
+                        </div>
+                    </div>
+
+                    <a class="nav-link px-3 py-2" href="about.html">About</a>
+                    <a class="nav-link px-3 py-2" href="services.html">Services</a>
+                    <a class="nav-link px-3 py-2" href="shop.html">Shop</a>
+                    <a class="nav-link px-3 py-2" href="ingredients.html">Ingredients</a>
+                    <a class="nav-link px-3 py-2" href="deals.html">Deals</a>
+                    <a class="nav-link active px-3 py-2" href="brands.html">Brands</a>
+                    <a class="nav-link px-3 py-2" href="contact.html">Contact</a>
+
+                    <div class="flex items-center toggle-spacing ml-2">
+                        <button id="theme-toggle" class="w-9 h-9 rounded-full bg-[#FCE7F3] dark:bg-[#2A1A1A] text-[#831843] dark:text-[#F472B6] hover:scale-110 transition flex items-center justify-center">
+                            <i class="fas fa-moon dark:hidden"></i>
+                            <i class="fas fa-sun hidden dark:inline"></i>
+                        </button>
+                        <button id="rtl-toggle" class="w-9 h-9 rounded-full bg-[#FCE7F3] dark:bg-[#2A1A1A] text-[#831843] dark:text-[#F472B6] hover:scale-110 transition flex items-center justify-center text-sm font-bold">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-2 ml-3">
+                        <a href="login.html" class="px-5 py-2 border border-[#FCE7F3] dark:border-[#3A1A2A] rounded-full text-sm font-semibold text-[#831843] dark:text-[#FDF2F8] hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] transition">Login</a>
+                        <a href="register.html" class="px-5 py-2 bg-[#EC4899] text-white rounded-full text-sm font-semibold hover:bg-[#BE185D] transition shadow-md shadow-[#EC4899]/25">Sign up</a>
+                    </div>
+                </div>
+
+                <button id="mobile-toggle" class="xl:hidden w-10 h-10 rounded-full bg-[#EC4899] text-white flex items-center justify-center shadow-md shadow-[#EC4899]/25">
+                    <i class="fas fa-bars text-base"></i>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="mobile-menu xl:hidden">
+                <div class="py-3 px-2 space-y-1">
+                    <div class="py-1">
+                        <button onclick="document.getElementById('home-mobile-drop').classList.toggle('hidden'); document.getElementById('home-mobile-icon').classList.toggle('rotate-180')" class="w-full flex items-center justify-between py-2.5 px-4 font-medium text-[#831843] dark:text-white bg-[#FDF2F8] dark:bg-[#1A0A0A] rounded-xl border-l-4 border-[#EC4899]">
+                            <span>Home</span>
+                            <i id="home-mobile-icon" class="fas fa-chevron-down text-xs opacity-60 transition-transform duration-300"></i>
+                        </button>
+                        <div id="home-mobile-drop" class="hidden pl-4 space-y-1 mt-1">
+                            <a class="block py-2 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="index.html"><i class="fas fa-home w-6 text-[#EC4899]"></i> Home 1</a>
+                            <a class="block py-2 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="home2.html"><i class="fas fa-home w-6 text-[#EC4899]"></i> Home 2</a>
+                        </div>
+                    </div>
+
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="about.html">About</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="services.html">Services</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="shop.html">Shop</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="ingredients.html">Ingredients</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="deals.html">Deals</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white bg-[#FDF2F8] dark:bg-[#1A0A0A] rounded-xl border-l-4 border-[#EC4899]" href="brands.html">Brands</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="contact.html">Contact</a>
+
+                    <div class="flex flex-col gap-2 pt-4 mt-3 border-t border-[#FCE7F3] dark:border-[#3A1A2A]">
+                        <a class="text-center py-2.5 rounded-full font-semibold text-[#831843] dark:text-white border border-[#FCE7F3] dark:border-[#3A1A2A] hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] transition" href="login.html">Login</a>
+                        <a class="text-center py-2.5 rounded-full font-semibold bg-[#EC4899] text-white hover:bg-[#BE185D] transition" href="register.html">Sign up</a>
+                    </div>
+                    <div class="flex gap-2 pt-2">
+                        <button id="mobile-theme-toggle" class="flex-1 py-2 rounded-full bg-[#FCE7F3] dark:bg-[#2A1A1A] text-[#831843] dark:text-[#F472B6] text-sm font-medium flex items-center gap-2 justify-center"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:inline"></i> Theme</button>
+                        <button id="mobile-rtl-toggle" class="flex-1 py-2 rounded-full bg-[#FCE7F3] dark:bg-[#2A1A1A] text-[#831843] dark:text-[#F472B6] text-sm font-medium flex items-center gap-2 justify-center"><i class="fas fa-exchange-alt"></i> RTL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======== SECTION 1: HERO ======== -->
+    <section class="min-h-[60vh] flex items-center pt-24 pb-16 md:pt-28 md:pb-20 relative overflow-hidden hero-bg">
+        <div class="hero-shape w-96 h-96 -top-20 -right-20"></div>
+        <div class="hero-shape w-80 h-80 bottom-10 -left-20"></div>
+        <div class="container mx-auto px-4 md:px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center animate-slide-up">
+                <span class="section-badge">Our Brands</span>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-extrabold mt-4 mb-5 leading-tight text-[#831843] dark:text-white">
+                    Curated <span class="text-[#EC4899]">Brands</span><br>for Your <span class="text-[#EC4899]">Routine</span>
+                </h1>
+                <p class="text-lg md:text-xl text-[#831843]/70 dark:text-[#FDF2F8]/70 max-w-2xl mx-auto mb-8">
+                    Discover the world's most trusted skincare and beauty brands, handpicked for quality and efficacy.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#popular" class="btn-primary px-8 py-3.5 rounded-full inline-flex items-center gap-2 text-base shadow-lg shadow-[#EC4899]/25 animate-bounce-gentle">
+                        Explore Brands
+                    </a>
+                    <a href="#all" class="btn-outline px-8 py-3.5 rounded-full inline-flex items-center gap-2 text-base">All Brands</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 2: POPULAR BRANDS ======== -->
+    <section id="popular" class="py-20 bg-white dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-badge">Most Loved</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Popular <span class="text-[#EC4899]">Brands</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-[#831843]/60 dark:text-[#FDF2F8]/60">Customer favorites trusted by thousands.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div class="brand-card">
+                    <div class="brand-logo">GLOW</div>
+                    <div class="brand-body">
+                        <h4>Glow Cosmetics</h4>
+                        <p>Premium skincare &amp; makeup</p>
+                        <a href="#" class="btn-brand">Explore</a>
+                    </div>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">PURE</div>
+                    <div class="brand-body">
+                        <h4>Pure Beauty</h4>
+                        <p>Clean, natural ingredients</p>
+                        <a href="#" class="btn-brand">Explore</a>
+                    </div>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">RADIANT</div>
+                    <div class="brand-body">
+                        <h4>Radiant Skincare</h4>
+                        <p>Luxury &amp; anti-aging</p>
+                        <a href="#" class="btn-brand">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 3: PREMIUM BRANDS ======== -->
+    <section class="py-20 bg-[#FDF2F8] dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-badge">Luxury Edit</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Premium <span class="text-[#EC4899]">Brands</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-[#831843]/60 dark:text-[#FDF2F8]/60">High-end beauty for the discerning.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div class="featured-brand-card">
+                    <div class="icon-wrap"><i class="fas fa-crown"></i></div>
+                    <h4 class="font-bold text-[#831843] dark:text-white">La Maison</h4>
+                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60">French luxury skincare</p>
+                    <a href="#" class="inline-block mt-3 text-xs font-semibold text-[#EC4899] hover:underline">Discover →</a>
+                </div>
+                <div class="featured-brand-card">
+                    <div class="icon-wrap"><i class="fas fa-gem"></i></div>
+                    <h4 class="font-bold text-[#831843] dark:text-white">Aura Beauty</h4>
+                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60">Premium anti-aging</p>
+                    <a href="#" class="inline-block mt-3 text-xs font-semibold text-[#EC4899] hover:underline">Discover →</a>
+                </div>
+                <div class="featured-brand-card">
+                    <div class="icon-wrap"><i class="fas fa-star"></i></div>
+                    <h4 class="font-bold text-[#831843] dark:text-white">Velvet Skin</h4>
+                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60">Luxury serums &amp; creams</p>
+                    <a href="#" class="inline-block mt-3 text-xs font-semibold text-[#EC4899] hover:underline">Discover →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 4: NATURAL BRANDS ======== -->
+    <section class="py-20 bg-white dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-badge">Pure &amp; Clean</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Natural <span class="text-[#EC4899]">Brands</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-[#831843]/60 dark:text-[#FDF2F8]/60">Clean beauty rooted in nature.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div class="natural-brand-card">
+                    <div class="icon-wrap"><i class="fas fa-leaf"></i></div>
+                    <h4 class="font-bold text-[#831843] dark:text-white">Botanica</h4>
+                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60">Plant-based formulas</p>
+                    <a href="#" class="inline-block mt-3 text-xs font-semibold text-[#EC4899] hover:underline">Explore →</a>
+                </div>
+                <div class="natural-brand-card">
+                    <div class="icon-wrap"><i class="fas fa-seedling"></i></div>
+                    <h4 class="font-bold text-[#831843] dark:text-white">Wildflower</h4>
+                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60">Organic &amp; sustainable</p>
+                    <a href="#" class="inline-block mt-3 text-xs font-semibold text-[#EC4899] hover:underline">Explore →</a>
+                </div>
+                <div class="natural-brand-card">
+                    <div class="icon-wrap"><i class="fas fa-tree"></i></div>
+                    <h4 class="font-bold text-[#831843] dark:text-white">Earth &amp; Skin</h4>
+                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60">Eco-friendly skincare</p>
+                    <a href="#" class="inline-block mt-3 text-xs font-semibold text-[#EC4899] hover:underline">Explore →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 5: TRENDING BRANDS (new design - no icons) ======== -->
+    <section class="py-20 bg-[#FDF2F8] dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-badge">On The Rise</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Trending <span class="text-[#EC4899]">Brands</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-[#831843]/60 dark:text-[#FDF2F8]/60">The brands everyone is talking about.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Verdant -->
+                <div class="trending-card-new">
+                    <span class="trending-number">#1</span>
+                    <div class="brand-name-large">VERDANT</div>
+                    <div class="brand-badge">Viral Sensation</div>
+                    <p class="brand-tagline">TikTok's favorite clean beauty brand</p>
+                    <a href="#" class="btn-trending">Shop Now →</a>
+                </div>
+
+                <!-- Lumin -->
+                <div class="trending-card-new">
+                    <span class="trending-number">#2</span>
+                    <div class="brand-name-large">LUMIN</div>
+                    <div class="brand-badge">Instagram-Worthy</div>
+                    <p class="brand-tagline">Aesthetic beauty that delivers results</p>
+                    <a href="#" class="btn-trending">Shop Now →</a>
+                </div>
+
+                <!-- Bloom -->
+                <div class="trending-card-new">
+                    <span class="trending-number">#3</span>
+                    <div class="brand-name-large">BLOOM</div>
+                    <div class="brand-badge">Clean &amp; Colorful</div>
+                    <p class="brand-tagline">Vibrant, clean beauty for the bold</p>
+                    <a href="#" class="btn-trending">Shop Now →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 6: ALL BRANDS ======== -->
+    <section id="all" class="py-20 bg-white dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="section-badge">Complete Collection</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">All <span class="text-[#EC4899]">Brands</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-[#831843]/60 dark:text-[#FDF2F8]/60">Every brand we carry, all in one place.</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
+                <div class="all-brand-card">
+                    <div class="brand-short">GL</div>
+                    <div class="brand-name">Glow</div>
+                </div>
+                <div class="all-brand-card">
+                    <div class="brand-short">PU</div>
+                    <div class="brand-name">Pure</div>
+                </div>
+                <div class="all-brand-card">
+                    <div class="brand-short">RA</div>
+                    <div class="brand-name">Radiant</div>
+                </div>
+                <div class="all-brand-card">
+                    <div class="brand-short">LM</div>
+                    <div class="brand-name">La Maison</div>
+                </div>
+                <div class="all-brand-card">
+                    <div class="brand-short">AU</div>
+                    <div class="brand-name">Aura</div>
+                </div>
+                <div class="all-brand-card">
+                    <div class="brand-short">VE</div>
+                    <div class="brand-name">Velvet</div>
+                </div>
+                <div class="all-brand-card">
+                    <div class="brand-short">BO</div>
+                    <div class="brand-name">Botanica</div>
+                </div>
+                <div class="all-brand-card">
+                    <div class="brand-short">WI</div>
+                    <div class="brand-name">Wildflower</div>
+                </div>
+                <div class="all-brand-card">
+                    <div class="brand-short">EA</div>
+                    <div class="brand-name">Earth &amp; Skin</div>
+                </div>
+                <div class="all-brand-card">
+                    <div class="brand-short">VE</div>
+                    <div class="brand-name">Verdant</div>
+                </div>
+                <div class="all-brand-card">
+                    <div class="brand-short">LU</div>
+                    <div class="brand-name">Lumin</div>
+                </div>
+                <div class="all-brand-card">
+                    <div class="brand-short">BL</div>
+                    <div class="brand-name">Bloom</div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="shop.html" class="btn-primary px-8 py-3 rounded-full inline-flex items-center gap-2 text-sm shadow-lg shadow-[#EC4899]/25">Shop All Brands</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== FOOTER ======== -->
+    <footer class="footer-bg pt-16 pb-8 border-t-4 footer-border">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="text-center md:text-start">
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
+                        <div class="w-9 h-9 bg-[#EC4899] rounded-xl flex items-center justify-center"><i class="fas fa-spa text-white text-sm"></i></div>
+                        <span class="text-xl font-display font-extrabold tracking-tight logo-text">GLOW<span class="logo-accent">LY</span></span>
+                    </div>
+                    <p class="text-[#831843]/70 dark:text-[#FDF2F8]/70 text-sm">Premium skincare &amp; beauty products for your radiant self.</p>
+                    <div class="flex justify-center md:justify-start gap-3 mt-4">
+                        <a href="#" class="social-icon-footer"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon-footer"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon-footer"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="text-center md:text-start">
+                    <h4 class="footer-heading font-bold text-sm uppercase tracking-wider mb-4">Shop</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="shop.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">All Products</a></li>
+                        <li><a href="ingredients.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">Ingredients</a></li>
+                        <li><a href="deals.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">Deals</a></li>
+                        <li><a href="brands.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">Brands</a></li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-start">
+                    <h4 class="footer-heading font-bold text-sm uppercase tracking-wider mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">About</a></li>
+                        <li><a href="services.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">Services</a></li>
+                        <li><a href="contact.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-start">
+                    <h4 class="footer-heading font-bold text-sm uppercase tracking-wider mb-4">Contact</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-center md:justify-start gap-3 text-[#831843]/70 dark:text-[#FDF2F8]/70"><i class="fas fa-map-marker-alt text-[#EC4899] mt-1"></i><span>123 Glow Ave, Beauty City</span></li>
+                        <li class="flex justify-center md:justify-start gap-3 text-[#831843]/70 dark:text-[#FDF2F8]/70"><i class="fas fa-phone text-[#EC4899]"></i><span>(555) 123-4567</span></li>
+                        <li class="flex justify-center md:justify-start gap-3 text-[#831843]/70 dark:text-[#FDF2F8]/70"><i class="fas fa-envelope text-[#EC4899]"></i><span>hello@glowly.com</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-6 border-t border-[#831843]/10 dark:border-white/10 text-center text-sm footer-copyright">
+                <p>&copy; 2026 Glowly Skincare &amp; Beauty. <span class="text-[#EC4899]">♥</span> Glow with confidence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======== SCRIPTS ======== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme toggle
+            const themeBtns = document.querySelectorAll('#theme-toggle, #mobile-theme-toggle');
+            themeBtns.forEach(btn => {
+                btn?.addEventListener('click', () => {
+                    document.documentElement.classList.toggle('dark');
+                    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+                });
+            });
+            if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+            // RTL
+            function setRTL(isRTL) {
+                const html = document.documentElement;
+                if (isRTL === 'rtl' || isRTL === true) { html.setAttribute('dir', 'rtl');
+                    localStorage.setItem('dir', 'rtl'); } else { html.setAttribute('dir', 'ltr');
+                    localStorage.setItem('dir', 'ltr'); }
+            }
+            const savedDir = localStorage.getItem('dir');
+            if (savedDir === 'rtl') document.documentElement.setAttribute('dir', 'rtl');
+            else document.documentElement.setAttribute('dir', 'ltr');
+
+            const rtlBtn = document.getElementById('rtl-toggle');
+            if (rtlBtn) {
+                rtlBtn.addEventListener('click', () => {
+                    const currentDir = document.documentElement.getAttribute('dir');
+                    setRTL(currentDir === 'rtl' ? 'ltr' : 'rtl');
+                });
+            }
+            const mobileRtlBtn = document.getElementById('mobile-rtl-toggle');
+            if (mobileRtlBtn) {
+                mobileRtlBtn.addEventListener('click', () => {
+                    const currentDir = document.documentElement.getAttribute('dir');
+                    setRTL(currentDir === 'rtl' ? 'ltr' : 'rtl');
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const mobileToggle = document.getElementById('mobile-toggle');
+                    if (mobileMenu && mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                        if (mobileToggle && mobileToggle.querySelector('i')) {
+                            mobileToggle.querySelector('i').classList.remove('fa-times');
+                            mobileToggle.querySelector('i').classList.add('fa-bars');
+                        }
+                    }
+                });
+            }
+
+            // Mobile menu
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileToggle && mobileMenu) {
+                mobileToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                    const icon = mobileToggle.querySelector('i');
+                    if (mobileMenu.classList.contains('open')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+                mobileMenu.querySelectorAll('a:not(#mobile-rtl-toggle)').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                        if (mobileToggle.querySelector('i')) {
+                            mobileToggle.querySelector('i').classList.remove('fa-times');
+                            mobileToggle.querySelector('i').classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

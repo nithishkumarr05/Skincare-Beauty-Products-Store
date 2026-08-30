@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glowly &middot; Shop</title>
+    <!-- Favicon -->
+ <link rel="icon" href="assets/fav.jpeg" type="image/jpeg">
+    <!-- Tailwind CSS via CDN -->
+    <script src="tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: '#831843',
+                            secondary: '#BE185D',
+                            accent: '#EC4899',
+                            'accent-light': '#F472B6',
+                            'accent-dark': '#9D174D',
+                            blush: '#FDF2F8',
+                            rose: '#FB7185',
+                            gold: '#F59E0B',
+                            bg: '#FDF2F8',
+                            card: '#FFFFFF',
+                            dark: '#0F0A0A',
+                            'dark-card': '#1A0A0A',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Playfair Display"', 'serif'],
+                        body: ['"Inter"', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'float-slow': 'floatSlow 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'bounce-gentle': 'bounceGentle 2.5s ease-in-out infinite',
+                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        floatSlow: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
+                        slideUp: { '0%': { transform: 'translateY(40px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+                        bounceGentle: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
+                        pulseSoft: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.7' } },
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(circle at 20% 30%, rgba(244,114,182,0.08) 0%, transparent 60%)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FDF2F8;
+            color: #831843;
+        }
+        .dark body {
+            background: #0F0A0A;
+            color: #FDF2F8;
+        }
+        /* Scrollbar */
+        body::-webkit-scrollbar {
+            width: 6px;
+        }
+        body::-webkit-scrollbar-track {
+            background: #FDF2F8;
+            border-radius: 10px;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: #F472B6;
+            border-radius: 10px;
+        }
+        .dark body::-webkit-scrollbar-track {
+            background: #1A0A0A;
+        }
+
+        /* ====== CONSISTENT HEADER & FOOTER COLORS ====== */
+        .header-bg {
+            background: #FFFFFF;
+            border-color: #FCE7F3;
+        }
+        .dark .header-bg {
+            background: #1A0A0A;
+            border-color: #3A1A2A;
+        }
+        .footer-bg {
+            background: #FDF2F8;
+        }
+        .dark .footer-bg {
+            background: #1A0A0A;
+        }
+        .footer-border {
+            border-color: #EC4899;
+        }
+        .dark .footer-border {
+            border-color: #EC4899;
+        }
+
+        .logo-text {
+            color: #831843;
+        }
+        .dark .logo-text {
+            color: #FDF2F8;
+        }
+        .logo-accent {
+            color: #EC4899;
+        }
+        .dark .logo-accent {
+            color: #F472B6;
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            color: #831843;
+            transition: color 0.2s;
+            font-size: 0.875rem;
+        }
+        .dark .nav-link {
+            color: #FDF2F8;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: #F472B6;
+            transition: width 0.25s ease;
+            border-radius: 3px;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: #EC4899 !important;
+        }
+        .dark .nav-link.active {
+            color: #F472B6 !important;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 0.4rem 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: all 0.25s ease;
+            z-index: 1000;
+            border: 1px solid #FCE7F3;
+        }
+        .dark .dropdown-menu {
+            background: #1A0A0A;
+            border-color: #3A1A2A;
+        }
+        .dropdown-trigger:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1.2rem;
+            transition: all 0.2s;
+            color: #831843;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .dark .dropdown-item {
+            color: #FDF2F8;
+        }
+        .dropdown-item:hover {
+            background: #FDF2F8;
+            color: #EC4899;
+            padding-left: 1.5rem;
+        }
+        .dark .dropdown-item:hover {
+            background: #2A1A1A;
+            color: #F472B6;
+        }
+        .dropdown-item i {
+            margin-right: 0.75rem;
+            width: 20px;
+            color: #EC4899;
+        }
+
+        .mobile-menu {
+            background: #FFFFFF;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0 0 24px 24px;
+        }
+        .dark .mobile-menu {
+            background: #1A0A0A;
+        }
+        .mobile-menu.open {
+            max-height: 90vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .mobile-menu.open::-webkit-scrollbar {
+            display: none;
+        }
+
+        .btn-primary {
+            background: #EC4899;
+            color: #FFFFFF;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+        .btn-primary:hover {
+            background: #BE185D;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(236, 72, 153, 0.4);
+        }
+        .btn-outline {
+            border: 2px solid #EC4899;
+            color: #EC4899;
+            background: transparent;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover {
+            background: #EC4899;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+        .dark .btn-outline {
+            border-color: #F472B6;
+            color: #F472B6;
+        }
+        .dark .btn-outline:hover {
+            background: #F472B6;
+            color: #0F0A0A;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 100%);
+        }
+        .dark .hero-bg {
+            background: linear-gradient(135deg, #0F0A0A 0%, #1A0A0A 100%);
+        }
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(236, 72, 153, 0.06);
+            pointer-events: none;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(236, 72, 153, 0.12);
+            color: #EC4899;
+            padding: 0.25rem 1rem;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .dark .section-badge {
+            background: rgba(236, 72, 153, 0.2);
+            color: #F472B6;
+        }
+        .section-divider {
+            height: 3px;
+            width: 60px;
+            background: #EC4899;
+            margin: 0.5rem auto 1.5rem;
+            border-radius: 4px;
+        }
+
+        .toggle-spacing {
+            gap: 0.5rem;
+        }
+        @media (min-width: 768px) {
+            .toggle-spacing {
+                gap: 0.75rem;
+            }
+        }
+
+        .social-icon-footer {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(131, 24, 67, 0.1);
+            color: #831843;
+            transition: all 0.3s;
+        }
+        .dark .social-icon-footer {
+            background: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+        }
+        .social-icon-footer:hover {
+            background: #EC4899;
+            color: #FFFFFF;
+            transform: translateY(-3px);
+        }
+
+        .footer-text {
+            color: rgba(131, 24, 67, 0.7);
+        }
+        .dark .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .footer-text:hover {
+            color: #EC4899;
+        }
+        .dark .footer-text:hover {
+            color: #F472B6;
+        }
+        .footer-heading {
+            color: #831843;
+        }
+        .dark .footer-heading {
+            color: #FDF2F8;
+        }
+        .footer-copyright {
+            color: rgba(131, 24, 67, 0.5);
+        }
+        .dark .footer-copyright {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        [dir="rtl"] .ml-auto {
+            margin-left: 0 !important;
+            margin-right: auto !important;
+        }
+        [dir="rtl"] .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
+        [dir="rtl"] .dropdown-item i {
+            margin-right: 0;
+            margin-left: 0.75rem;
+        }
+        [dir="rtl"] .dropdown-item:hover {
+            padding-left: 1.2rem;
+            padding-right: 1.5rem;
+        }
+
+        /* Shop Page Specific Styles */
+        .category-card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+            border: 1px solid #FCE7F3;
+            overflow: hidden;
+        }
+        .dark .category-card {
+            background: #1A0A0A;
+            border-color: #3A1A2A;
+        }
+        .category-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(236, 72, 153, 0.25);
+            border-color: #EC4899;
+        }
+        .category-card .category-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            background-size: cover;
+            background-position: center;
+        }
+        .category-card .category-body {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .category-card .category-body h3 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #831843;
+        }
+        .dark .category-card .category-body h3 {
+            color: #FDF2F8;
+        }
+        .category-card .category-body .product-count {
+            font-size: 0.8rem;
+            color: rgba(131, 24, 67, 0.6);
+        }
+        .dark .category-card .category-body .product-count {
+            color: rgba(253, 242, 248, 0.6);
+        }
+        .category-card .category-body .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.6rem;
+            justify-content: center;
+            margin: 0.6rem 0;
+        }
+        .category-card .category-body .features span {
+            font-size: 0.65rem;
+            background: #FDF2F8;
+            padding: 0.15rem 0.7rem;
+            border-radius: 100px;
+            color: #831843;
+            font-weight: 500;
+        }
+        .dark .category-card .category-body .features span {
+            background: #2A1A1A;
+            color: #FDF2F8;
+        }
+        .category-card .category-body .btn-shop {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.4rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: #EC4899;
+            color: #FFFFFF;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .category-card .category-body .btn-shop:hover {
+            background: #BE185D;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+        .dark .category-card .category-body .btn-shop:hover {
+            background: #F472B6;
+            color: #0F0A0A;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======== NAVIGATION ======== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 header-bg border-b shadow-sm transition-colors">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex items-center justify-between h-20 md:h-22">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2.5 group shrink-0">
+                    <div class="w-10 h-10 bg-[#EC4899] rounded-xl flex items-center justify-center shadow-lg shadow-[#EC4899]/25 group-hover:scale-105 transition">
+                        <i class="fas fa-spa text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl md:text-2xl font-display font-extrabold tracking-tight logo-text">GLOW<span class="logo-accent">LY</span></span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden xl:flex items-center gap-1 lg:gap-2 ml-auto rtl:ml-0 rtl:mr-auto">
+                    <div class="dropdown-trigger relative">
+                        <button class="nav-link px-3 py-2 flex items-center gap-1">
+                            Home <i class="fas fa-chevron-down text-[10px] opacity-60"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="index.html"><i class="fas fa-home"></i> Home 1</a>
+                            <a class="dropdown-item" href="home2.html"><i class="fas fa-home"></i> Home 2</a>
+                        </div>
+                    </div>
+
+                    <a class="nav-link px-3 py-2" href="about.html">About</a>
+                    <a class="nav-link px-3 py-2" href="services.html">Services</a>
+                    <a class="nav-link active px-3 py-2" href="shop.html">Shop</a>
+                    <a class="nav-link px-3 py-2" href="ingredients.html">Ingredients</a>
+                    <a class="nav-link px-3 py-2" href="deals.html">Deals</a>
+                    <a class="nav-link px-3 py-2" href="brands.html">Brands</a>
+                    <a class="nav-link px-3 py-2" href="contact.html">Contact</a>
+
+                    <div class="flex items-center toggle-spacing ml-2">
+                        <button id="theme-toggle" class="w-9 h-9 rounded-full bg-[#FCE7F3] dark:bg-[#2A1A1A] text-[#831843] dark:text-[#F472B6] hover:scale-110 transition flex items-center justify-center">
+                            <i class="fas fa-moon dark:hidden"></i>
+                            <i class="fas fa-sun hidden dark:inline"></i>
+                        </button>
+                        <button id="rtl-toggle" class="w-9 h-9 rounded-full bg-[#FCE7F3] dark:bg-[#2A1A1A] text-[#831843] dark:text-[#F472B6] hover:scale-110 transition flex items-center justify-center text-sm font-bold">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-2 ml-3">
+                        <a href="login.html" class="px-5 py-2 border border-[#FCE7F3] dark:border-[#3A1A2A] rounded-full text-sm font-semibold text-[#831843] dark:text-[#FDF2F8] hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] transition">Login</a>
+                        <a href="register.html" class="px-5 py-2 bg-[#EC4899] text-white rounded-full text-sm font-semibold hover:bg-[#BE185D] transition shadow-md shadow-[#EC4899]/25">Sign up</a>
+                    </div>
+                </div>
+
+                <button id="mobile-toggle" class="xl:hidden w-10 h-10 rounded-full bg-[#EC4899] text-white flex items-center justify-center shadow-md shadow-[#EC4899]/25">
+                    <i class="fas fa-bars text-base"></i>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="mobile-menu xl:hidden">
+                <div class="py-3 px-2 space-y-1">
+                    <div class="py-1">
+                        <button onclick="document.getElementById('home-mobile-drop').classList.toggle('hidden'); document.getElementById('home-mobile-icon').classList.toggle('rotate-180')" class="w-full flex items-center justify-between py-2.5 px-4 font-medium text-[#831843] dark:text-white bg-[#FDF2F8] dark:bg-[#1A0A0A] rounded-xl border-l-4 border-[#EC4899]">
+                            <span>Home</span>
+                            <i id="home-mobile-icon" class="fas fa-chevron-down text-xs opacity-60 transition-transform duration-300"></i>
+                        </button>
+                        <div id="home-mobile-drop" class="hidden pl-4 space-y-1 mt-1">
+                            <a class="block py-2 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="index.html"><i class="fas fa-home w-6 text-[#EC4899]"></i> Home 1</a>
+                            <a class="block py-2 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="home2.html"><i class="fas fa-home w-6 text-[#EC4899]"></i> Home 2</a>
+                        </div>
+                    </div>
+
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="about.html">About</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="services.html">Services</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white bg-[#FDF2F8] dark:bg-[#1A0A0A] rounded-xl border-l-4 border-[#EC4899]" href="shop.html">Shop</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="ingredients.html">Ingredients</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="deals.html">Deals</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="brands.html">Brands</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="contact.html">Contact</a>
+
+                    <div class="flex flex-col gap-2 pt-4 mt-3 border-t border-[#FCE7F3] dark:border-[#3A1A2A]">
+                        <a class="text-center py-2.5 rounded-full font-semibold text-[#831843] dark:text-white border border-[#FCE7F3] dark:border-[#3A1A2A] hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] transition" href="login.html">Login</a>
+                        <a class="text-center py-2.5 rounded-full font-semibold bg-[#EC4899] text-white hover:bg-[#BE185D] transition" href="register.html">Sign up</a>
+                    </div>
+                    <div class="flex gap-2 pt-2">
+                        <button id="mobile-theme-toggle" class="flex-1 py-2 rounded-full bg-[#FCE7F3] dark:bg-[#2A1A1A] text-[#831843] dark:text-[#F472B6] text-sm font-medium flex items-center gap-2 justify-center"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:inline"></i> Theme</button>
+                        <button id="mobile-rtl-toggle" class="flex-1 py-2 rounded-full bg-[#FCE7F3] dark:bg-[#2A1A1A] text-[#831843] dark:text-[#F472B6] text-sm font-medium flex items-center gap-2 justify-center"><i class="fas fa-exchange-alt"></i> RTL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======== SECTION 1: HERO ======== -->
+    <section class="min-h-[60vh] flex items-center pt-24 pb-16 md:pt-28 md:pb-20 relative overflow-hidden hero-bg">
+        <div class="hero-shape w-96 h-96 -top-20 -right-20"></div>
+        <div class="hero-shape w-80 h-80 bottom-10 -left-20"></div>
+        <div class="container mx-auto px-4 md:px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center animate-slide-up">
+                <span class="section-badge">Shop Glowly</span>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-extrabold mt-4 mb-5 leading-tight text-[#831843] dark:text-white">
+                    Discover Your <span class="text-[#EC4899]">Glow</span><br>Collection
+                </h1>
+                <p class="text-lg md:text-xl text-[#831843]/70 dark:text-[#FDF2F8]/70 max-w-2xl mx-auto mb-8">
+                    Explore our curated range of premium skincare essentials — from cleansers to serums, find everything you need for a radiant complexion.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#cleansers" class="btn-primary px-8 py-3.5 rounded-full inline-flex items-center gap-2 text-base shadow-lg shadow-[#EC4899]/25 animate-bounce-gentle">
+                        Shop Now
+                    </a>
+                    <a href="#serums" class="btn-outline px-8 py-3.5 rounded-full inline-flex items-center gap-2 text-base">Explore Serums</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 2: CLEANSERS ======== -->
+    <section id="cleansers" class="py-20 bg-white dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6 max-w-6xl">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div class="order-2 lg:order-1">
+                    <span class="section-badge">Step 1</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Gentle <span class="text-[#EC4899]">Cleansers</span></h2>
+                    <div class="section-divider"></div>
+                    <p class="text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed">
+                        Start your routine with our range of gentle, effective cleansers. Formulated to remove impurities without stripping your skin's natural moisture barrier.
+                    </p>
+                    <div class="features mt-4 flex flex-wrap gap-2">
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🌿 Hydrating</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🧼 Gentle</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">💧 pH Balanced</span>
+                    </div>
+                    <a href="#" class="inline-flex items-center gap-2 mt-4 text-[#EC4899] font-semibold hover:underline">Shop Cleansers →</a>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="category-card" style="border-color: transparent;">
+                        <div class="category-image" style="background-image: url('assets/shop_cleanser.jpg'); border-radius: 20px; aspect-ratio: 1 / 1; background-size: cover; background-position: center;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 3: SERUMS ======== -->
+    <section id="serums" class="py-20 bg-[#FDF2F8] dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6 max-w-6xl">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div>
+                    <div class="category-card" style="border-color: transparent;">
+                        <div class="category-image" style="background-image: url('assets/shop_serum.jpg'); border-radius: 20px; aspect-ratio: 1 / 1; background-size: cover; background-position: center;"></div>
+                    </div>
+                </div>
+                <div>
+                    <span class="section-badge">Step 2</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Potent <span class="text-[#EC4899]">Serums</span></h2>
+                    <div class="section-divider"></div>
+                    <p class="text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed">
+                        Target specific skin concerns with our concentrated serums. Packed with active ingredients like Vitamin C, Hyaluronic Acid, and Retinol for visible results.
+                    </p>
+                    <div class="features mt-4 flex flex-wrap gap-2">
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">⚡ Brightening</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">💧 Hydrating</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🔬 Anti-Aging</span>
+                    </div>
+                    <a href="#" class="inline-flex items-center gap-2 mt-4 text-[#EC4899] font-semibold hover:underline">Shop Serums →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 4: MOISTURIZERS ======== -->
+    <section id="moisturizers" class="py-20 bg-white dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6 max-w-6xl">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div class="order-2 lg:order-1">
+                    <span class="section-badge">Step 3</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Nourishing <span class="text-[#EC4899]">Moisturizers</span></h2>
+                    <div class="section-divider"></div>
+                    <p class="text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed">
+                        Lock in hydration and protect your skin with our luxurious moisturizers. From lightweight gels to rich creams, find your perfect match.
+                    </p>
+                    <div class="features mt-4 flex flex-wrap gap-2">
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🧴 Deep Hydration</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🌿 Soothing</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">✨ Radiant Glow</span>
+                    </div>
+                    <a href="#" class="inline-flex items-center gap-2 mt-4 text-[#EC4899] font-semibold hover:underline">Shop Moisturizers →</a>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="category-card" style="border-color: transparent;">
+                        <div class="category-image" style="background-image: url('assets/shop_moisturizer.jpg'); border-radius: 20px; aspect-ratio: 1 / 1; background-size: cover; background-position: center;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 5: SUNSCREENS ======== -->
+    <section id="sunscreens" class="py-20 bg-[#FDF2F8] dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6 max-w-6xl">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div>
+                    <div class="category-card" style="border-color: transparent;">
+                        <div class="category-image" style="background-image: url('assets/shop_mask.jpg'); border-radius: 20px; aspect-ratio: 1 / 1; background-size: cover; background-position: center;"></div>
+                    </div>
+                </div>
+                <div>
+                    <span class="section-badge">Step 4</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Protective <span class="text-[#EC4899]">Sunscreens</span></h2>
+                    <div class="section-divider"></div>
+                    <p class="text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed">
+                        Shield your skin from harmful UV rays with our broad-spectrum sunscreens. Lightweight, non-greasy formulas that provide all-day protection.
+                    </p>
+                    <div class="features mt-4 flex flex-wrap gap-2">
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">☀️ SPF 50+</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🌊 Water-Resistant</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🧴 Non-Greasy</span>
+                    </div>
+                    <a href="#" class="inline-flex items-center gap-2 mt-4 text-[#EC4899] font-semibold hover:underline">Shop Sunscreens →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 6: FACE MASKS ======== -->
+    <section class="py-20 bg-white dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6 max-w-6xl">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div class="order-2 lg:order-1">
+                    <span class="section-badge">Step 5</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Revitalizing <span class="text-[#EC4899]">Face Masks</span></h2>
+                    <div class="section-divider"></div>
+                    <p class="text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed">
+                        Treat your skin to a weekly boost with our range of face masks. From clay to sheet masks, each formula is designed to address specific skin needs.
+                    </p>
+                    <div class="features mt-4 flex flex-wrap gap-2">
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🧖‍♀️ Deep Cleanse</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">💧 Hydrating</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">✨ Brightening</span>
+                    </div>
+                    <a href="#" class="inline-flex items-center gap-2 mt-4 text-[#EC4899] font-semibold hover:underline">Shop Face Masks →</a>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="category-card" style="border-color: transparent;">
+                        <div class="category-image" style="background-image: url('assets/shop_sunscreen.jpg'); border-radius: 20px; aspect-ratio: 1 / 1; background-size: cover; background-position: center;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== FOOTER ======== -->
+    <footer class="footer-bg pt-16 pb-8 border-t-4 footer-border">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="text-center md:text-start">
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
+                        <div class="w-9 h-9 bg-[#EC4899] rounded-xl flex items-center justify-center"><i class="fas fa-spa text-white text-sm"></i></div>
+                        <span class="text-xl font-display font-extrabold tracking-tight logo-text">GLOW<span class="logo-accent">LY</span></span>
+                    </div>
+                    <p class="text-[#831843]/70 dark:text-[#FDF2F8]/70 text-sm">Premium skincare &amp; beauty products for your radiant self.</p>
+                    <div class="flex justify-center md:justify-start gap-3 mt-4">
+                        <a href="#" class="social-icon-footer"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon-footer"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon-footer"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="text-center md:text-start">
+                    <h4 class="footer-heading font-bold text-sm uppercase tracking-wider mb-4">Shop</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="shop.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">All Products</a></li>
+                        <li><a href="ingredients.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">Ingredients</a></li>
+                        <li><a href="deals.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">Deals</a></li>
+                        <li><a href="brands.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">Brands</a></li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-start">
+                    <h4 class="footer-heading font-bold text-sm uppercase tracking-wider mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">About</a></li>
+                        <li><a href="services.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">Services</a></li>
+                        <li><a href="contact.html" class="footer-text hover:text-[#EC4899] dark:hover:text-[#F472B6] transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-start">
+                    <h4 class="footer-heading font-bold text-sm uppercase tracking-wider mb-4">Contact</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-center md:justify-start gap-3 text-[#831843]/70 dark:text-[#FDF2F8]/70"><i class="fas fa-map-marker-alt text-[#EC4899] mt-1"></i><span>123 Glow Ave, Beauty City</span></li>
+                        <li class="flex justify-center md:justify-start gap-3 text-[#831843]/70 dark:text-[#FDF2F8]/70"><i class="fas fa-phone text-[#EC4899]"></i><span>(555) 123-4567</span></li>
+                        <li class="flex justify-center md:justify-start gap-3 text-[#831843]/70 dark:text-[#FDF2F8]/70"><i class="fas fa-envelope text-[#EC4899]"></i><span>hello@glowly.com</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-6 border-t border-[#831843]/10 dark:border-white/10 text-center text-sm footer-copyright">
+                <p>&copy; 2026 Glowly Skincare &amp; Beauty. <span class="text-[#EC4899]">♥</span> Glow with confidence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======== SCRIPTS ======== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme toggle
+            const themeBtns = document.querySelectorAll('#theme-toggle, #mobile-theme-toggle');
+            themeBtns.forEach(btn => {
+                btn?.addEventListener('click', () => {
+                    document.documentElement.classList.toggle('dark');
+                    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+                });
+            });
+            if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+            // RTL
+            function setRTL(isRTL) {
+                const html = document.documentElement;
+                if (isRTL === 'rtl' || isRTL === true) { html.setAttribute('dir', 'rtl');
+                    localStorage.setItem('dir', 'rtl'); } else { html.setAttribute('dir', 'ltr');
+                    localStorage.setItem('dir', 'ltr'); }
+            }
+            const savedDir = localStorage.getItem('dir');
+            if (savedDir === 'rtl') document.documentElement.setAttribute('dir', 'rtl');
+            else document.documentElement.setAttribute('dir', 'ltr');
+
+            const rtlBtn = document.getElementById('rtl-toggle');
+            if (rtlBtn) {
+                rtlBtn.addEventListener('click', () => {
+                    const currentDir = document.documentElement.getAttribute('dir');
+                    setRTL(currentDir === 'rtl' ? 'ltr' : 'rtl');
+                });
+            }
+            const mobileRtlBtn = document.getElementById('mobile-rtl-toggle');
+            if (mobileRtlBtn) {
+                mobileRtlBtn.addEventListener('click', () => {
+                    const currentDir = document.documentElement.getAttribute('dir');
+                    setRTL(currentDir === 'rtl' ? 'ltr' : 'rtl');
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const mobileToggle = document.getElementById('mobile-toggle');
+                    if (mobileMenu && mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                        if (mobileToggle && mobileToggle.querySelector('i')) {
+                            mobileToggle.querySelector('i').classList.remove('fa-times');
+                            mobileToggle.querySelector('i').classList.add('fa-bars');
+                        }
+                    }
+                });
+            }
+
+            // Mobile menu
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileToggle && mobileMenu) {
+                mobileToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                    const icon = mobileToggle.querySelector('i');
+                    if (mobileMenu.classList.contains('open')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+                mobileMenu.querySelectorAll('a:not(#mobile-rtl-toggle)').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                        if (mobileToggle.querySelector('i')) {
+                            mobileToggle.querySelector('i').classList.remove('fa-times');
+                            mobileToggle.querySelector('i').classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
