@@ -550,6 +550,10 @@
         }
 
         .enquiry-card {
+            overflow: hidden;
+            padding: 0 !important;
+            display: flex;
+            flex-direction: column;
             background: #FFFFFF;
             border-radius: 20px;
             padding: 2rem 1.5rem;
@@ -562,6 +566,10 @@
             align-items: center;
         }
         .dark .enquiry-card {
+            overflow: hidden;
+            padding: 0 !important;
+            display: flex;
+            flex-direction: column;
             background: #1A0A0A;
             border-color: #3A1A2A;
         }
@@ -639,8 +647,8 @@
                     </div>
 
                     <div class="flex items-center gap-2 ml-3">
-                        <a href="login.html" class="px-5 py-2 border border-[#FCE7F3] dark:border-[#3A1A2A] rounded-full text-sm font-semibold text-[#831843] dark:text-[#FDF2F8] hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] transition">Login</a>
-                        <a href="register.html" class="px-5 py-2 bg-[#EC4899] text-white rounded-full text-sm font-semibold hover:bg-[#BE185D] transition shadow-md shadow-[#EC4899]/25">Sign up</a>
+                        <a href="login.html" class="px-5 py-2 bg-[#EC4899] text-white rounded-full text-sm font-semibold hover:bg-[#BE185D] transition shadow-md shadow-[#EC4899]/25">Login</a>
+
                     </div>
                 </div>
 
@@ -670,8 +678,8 @@
                     <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white bg-[#FDF2F8] dark:bg-[#1A0A0A] rounded-xl border-l-4 border-[#EC4899]" href="contact.html">Contact</a>
 
                     <div class="flex flex-col gap-2 pt-4 mt-3 border-t border-[#FCE7F3] dark:border-[#3A1A2A]">
-                        <a class="text-center py-2.5 rounded-full font-semibold text-[#831843] dark:text-white border border-[#FCE7F3] dark:border-[#3A1A2A] hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] transition" href="login.html">Login</a>
-                        <a class="text-center py-2.5 rounded-full font-semibold bg-[#EC4899] text-white hover:bg-[#BE185D] transition" href="register.html">Sign up</a>
+                        <a class="text-center py-2.5 bg-[#EC4899] text-white rounded-full font-semibold hover:bg-[#BE185D] transition shadow-md shadow-[#EC4899]/25" href="login.html">Login</a>
+
                     </div>
                     <div class="flex gap-2 pt-2">
                         <button id="mobile-theme-toggle" class="flex-1 py-2 rounded-full bg-[#FCE7F3] dark:bg-[#2A1A1A] text-[#831843] dark:text-[#F472B6] text-sm font-medium flex items-center gap-2 justify-center"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:inline"></i> Theme</button>
@@ -737,8 +745,7 @@
                     <h4 class="font-bold text-[#831843] dark:text-white text-lg">Live Chat</h4>
                     <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60">Chat with our team</p>
                     <p class="text-xs text-[#831843]/50 dark:text-[#FDF2F8]/50 mb-6">Available during business hours</p>
-                    <a href="#" class="inline-block mt-auto text-xs font-semibold text-[#EC4899] hover:underline">Start Chat →</a>
-                </div>
+                    <a href="#" class="inline-block mt-auto text-xs font-semibold text-[#EC4899] hover:underline">Start Chat →</a></div></div>
             </div>
         </div>
     </section>
@@ -862,23 +869,20 @@
             </div>
             <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 <div class="enquiry-card">
-                    <div class="icon-wrap"><i class="fas fa-user-md"></i></div>
+                    <img src="assets/expert_advice.jpg" alt="Expert Advice" class="w-full h-48 object-cover"><div class="p-6 text-center flex-1 flex flex-col"><div class="icon-wrap -mt-12 relative z-10 bg-[#FDF2F8] dark:bg-[#1A0A0A] border-4 border-white dark:border-[#1A0A0A] mx-auto"><i class="fas fa-user-md"></i></div>
                     <h4 class="font-bold text-[#831843] dark:text-white">Expert Advice</h4>
                     <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mb-6">Our certified estheticians are ready to help.</p>
-                    <a href="#" class="inline-block mt-auto text-xs font-semibold text-[#EC4899] hover:underline">Book Now →</a>
-                </div>
+                    <a href="#" class="inline-block mt-auto text-xs font-semibold text-[#EC4899] hover:underline">Book Now →</a></div></div>
                 <div class="enquiry-card">
-                    <div class="icon-wrap"><i class="fas fa-video"></i></div>
+                    <img src="assets/virtual_consult.jpg" alt="Virtual Consultation" class="w-full h-48 object-cover"><div class="p-6 text-center flex-1 flex flex-col"><div class="icon-wrap -mt-12 relative z-10 bg-[#FDF2F8] dark:bg-[#1A0A0A] border-4 border-white dark:border-[#1A0A0A] mx-auto"><i class="fas fa-video"></i></div>
                     <h4 class="font-bold text-[#831843] dark:text-white">Virtual Consultation</h4>
                     <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mb-6">Connect with us from anywhere.</p>
-                    <a href="#" class="inline-block mt-auto text-xs font-semibold text-[#EC4899] hover:underline">Schedule →</a>
-                </div>
+                    <a href="#" class="inline-block mt-auto text-xs font-semibold text-[#EC4899] hover:underline">Schedule →</a></div></div>
                 <div class="enquiry-card">
-                    <div class="icon-wrap"><i class="fas fa-gift"></i></div>
+                    <img src="assets/free_samples.jpg" alt="Free Samples" class="w-full h-48 object-cover"><div class="p-6 text-center flex-1 flex flex-col"><div class="icon-wrap -mt-12 relative z-10 bg-[#FDF2F8] dark:bg-[#1A0A0A] border-4 border-white dark:border-[#1A0A0A] mx-auto"><i class="fas fa-gift"></i></div>
                     <h4 class="font-bold text-[#831843] dark:text-white">Free Samples</h4>
                     <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mb-6">Get product samples with your consultation.</p>
-                    <a href="#" class="inline-block mt-auto text-xs font-semibold text-[#EC4899] hover:underline">Learn More →</a>
-                </div>
+                    <a href="#" class="inline-block mt-auto text-xs font-semibold text-[#EC4899] hover:underline">Learn More →</a></div></div>
             </div>
         </div>
     </section>
@@ -892,8 +896,11 @@
                 <div class="section-divider"></div>
                 <p class="text-[#831843]/60 dark:text-[#FDF2F8]/60">We'll get back to you within 24 hours.</p>
             </div>
-            <div class="max-w-3xl mx-auto">
-                <div class="bg-[#FDF2F8] dark:bg-[#1A0A0A] rounded-3xl p-8 border border-[#FCE7F3] dark:border-[#3A1A2A]">
+            <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+                  <div class="hidden lg:block rounded-3xl overflow-hidden shadow-xl h-full max-h-[600px]">
+                      <img src="assets/contact_form_img.jpg" class="w-full h-full object-cover" alt="Friendly Customer Service">
+                  </div>
+                  <div class="bg-[#FDF2F8] dark:bg-[#1A0A0A] rounded-3xl p-8 border border-[#FCE7F3] dark:border-[#3A1A2A]">
                     <form class="space-y-5">
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
