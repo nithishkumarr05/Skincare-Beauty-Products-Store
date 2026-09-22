@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Glowly &middot; Ingredients</title>
+    <title>Glowly &middot; Shop</title>
     <!-- Favicon -->
  <link rel="icon" href="assets/fav.jpeg" type="image/jpeg">
     <!-- Tailwind CSS via CDN -->
@@ -369,134 +369,88 @@
             padding-right: 1.5rem;
         }
 
-        /* Ingredients Page Specific Styles */
-        .ingredient-card {
+        /* Shop Page Specific Styles */
+        .category-card {
             background: #FFFFFF;
-            border-radius: 20px;
-            /* padding removed in favor of tailwind classes */
-            border: 1px solid #FCE7F3;
+            border-radius: 24px;
             transition: all 0.3s ease;
+            border: 1px solid #FCE7F3;
+            overflow: hidden;
+        }
+        .dark .category-card {
+            background: #1A0A0A;
+            border-color: #3A1A2A;
+        }
+        .category-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(236, 72, 153, 0.25);
+            border-color: #EC4899;
+        }
+        .category-card .category-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            background-size: cover;
+            background-position: center;
+        }
+        .category-card .category-body {
+            padding: 1.5rem;
             text-align: center;
         }
-        .dark .ingredient-card {
-            background: #1A0A0A;
-            border-color: #3A1A2A;
+        .category-card .category-body h3 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #831843;
         }
-        .ingredient-card:hover {
-            border-color: #EC4899;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px -8px rgba(236, 72, 153, 0.15);
+        .dark .category-card .category-body h3 {
+            color: #FDF2F8;
         }
-        .ingredient-card .icon-wrap {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            background: rgba(236, 72, 153, 0.12);
-            color: #EC4899;
+        .category-card .category-body .product-count {
+            font-size: 0.8rem;
+            color: rgba(131, 24, 67, 0.6);
+        }
+        .dark .category-card .category-body .product-count {
+            color: rgba(253, 242, 248, 0.6);
+        }
+        .category-card .category-body .features {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.6rem;
             justify-content: center;
-            font-size: 1.5rem;
-            margin: 0 auto 0.8rem;
+            margin: 0.6rem 0;
         }
-        .dark .ingredient-card .icon-wrap {
-            background: rgba(236, 72, 153, 0.2);
-            color: #F472B6;
+        .category-card .category-body .features span {
+            font-size: 0.65rem;
+            background: #FDF2F8;
+            padding: 0.15rem 0.7rem;
+            border-radius: 100px;
+            color: #831843;
+            font-weight: 500;
         }
-
-        .benefit-card {
-            background: #FFFFFF;
-            border-radius: 20px;
-            padding: 1.8rem;
-            border: 1px solid #FCE7F3;
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+        .dark .category-card .category-body .features span {
+            background: #2A1A1A;
+            color: #FDF2F8;
         }
-        .dark .benefit-card {
-            background: #1A0A0A;
-            border-color: #3A1A2A;
+        .category-card .category-body .btn-shop {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.4rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: #EC4899;
+            color: #FFFFFF;
+            transition: all 0.3s;
+            text-decoration: none;
         }
-        .benefit-card:hover {
-            border-color: #EC4899;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px -8px rgba(236, 72, 153, 0.15);
+        .category-card .category-body .btn-shop:hover {
+            background: #BE185D;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
         }
-        .benefit-card .icon-wrap {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: rgba(236, 72, 153, 0.12);
-            color: #EC4899;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-        }
-        .dark .benefit-card .icon-wrap {
-            background: rgba(236, 72, 153, 0.2);
-            color: #F472B6;
-        }
-
-        .comparison-card {
-            background: #FFFFFF;
-            border-radius: 20px;
-            padding: 1.8rem;
-            border: 1px solid #FCE7F3;
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .dark .comparison-card {
-            background: #1A0A0A;
-            border-color: #3A1A2A;
-        }
-        .comparison-card:hover {
-            border-color: #EC4899;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px -8px rgba(236, 72, 153, 0.15);
-        }
-
-        .clean-card {
-            background: #FFFFFF;
-            border-radius: 20px;
-            padding: 1.8rem;
-            border: 1px solid #FCE7F3;
-            transition: all 0.3s ease;
-            text-align: center;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .dark .clean-card {
-            background: #1A0A0A;
-            border-color: #3A1A2A;
-        }
-        .clean-card:hover {
-            border-color: #EC4899;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px -8px rgba(236, 72, 153, 0.15);
-        }
-        .clean-card .icon-wrap {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            background: rgba(236, 72, 153, 0.12);
-            color: #EC4899;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin: 0 auto 0.8rem;
-        }
-        .dark .clean-card .icon-wrap {
-            background: rgba(236, 72, 153, 0.2);
-            color: #F472B6;
+        .dark .category-card .category-body .btn-shop:hover {
+            background: #F472B6;
+            color: #0F0A0A;
         }
     </style>
 </head>
@@ -530,8 +484,8 @@
 
                     <a class="nav-link px-3 py-2" href="about.html">About</a>
                     <a class="nav-link px-3 py-2" href="services.html">Services</a>
-                    <a class="nav-link px-3 py-2" href="shop.html">Shop</a>
-                    <a class="nav-link active px-3 py-2" href="ingredients.html">Ingredients</a>
+                    <a class="nav-link active px-3 py-2" href="shop.html">Shop</a>
+                    <a class="nav-link px-3 py-2" href="ingredients.html">Ingredients</a>
                     <a class="nav-link px-3 py-2" href="deals.html">Deals</a>
                     <a class="nav-link px-3 py-2" href="brands.html">Brands</a>
                     <a class="nav-link px-3 py-2" href="contact.html">Contact</a>
@@ -572,8 +526,8 @@
 
                     <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="about.html">About</a>
                     <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="services.html">Services</a>
-                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="shop.html">Shop</a>
-                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white bg-[#FDF2F8] dark:bg-[#1A0A0A] rounded-xl border-l-4 border-[#EC4899]" href="ingredients.html">Ingredients</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white bg-[#FDF2F8] dark:bg-[#1A0A0A] rounded-xl border-l-4 border-[#EC4899]" href="shop.html">Shop</a>
+                    <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="ingredients.html">Ingredients</a>
                     <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="deals.html">Deals</a>
                     <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="brands.html">Brands</a>
                     <a class="block py-2.5 px-4 font-medium text-[#831843] dark:text-white hover:bg-[#FDF2F8] dark:hover:bg-[#1A0A0A] rounded-xl transition" href="contact.html">Contact</a>
@@ -597,193 +551,164 @@
         <div class="hero-shape w-80 h-80 bottom-10 -left-20"></div>
         <div class="container mx-auto px-4 md:px-6 relative z-10">
             <div class="max-w-4xl mx-auto text-center animate-slide-up">
-                <span class="section-badge">What's Inside</span>
+                <span class="section-badge">Shop Glowly</span>
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-extrabold mt-4 mb-5 leading-tight text-[#831843] dark:text-white">
-                    The Science of <span class="text-[#EC4899]">Beautiful</span> Skin
+                    Discover Your <span class="text-[#EC4899]">Glow</span><br>Collection
                 </h1>
                 <p class="text-lg md:text-xl text-[#831843]/70 dark:text-[#FDF2F8]/70 max-w-2xl mx-auto mb-8">
-                    Discover the powerful ingredients that make our products effective. We believe in transparency — so you know exactly what you're putting on your skin.
+                    Explore our curated range of premium skincare essentials — from cleansers to serums, find everything you need for a radiant complexion.
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#natural" class="btn-primary px-8 py-3.5 rounded-full inline-flex items-center gap-2 text-base shadow-lg shadow-[#EC4899]/25 animate-bounce-gentle">
-                        Explore Ingredients
+                    <a href="#cleansers" class="btn-primary px-8 py-3.5 rounded-full inline-flex items-center gap-2 text-base shadow-lg shadow-[#EC4899]/25 animate-bounce-gentle">
+                        Shop Now
                     </a>
-                    <a href="#benefits" class="btn-outline px-8 py-3.5 rounded-full inline-flex items-center gap-2 text-base">Learn Benefits</a>
+                    <a href="#serums" class="btn-outline px-8 py-3.5 rounded-full inline-flex items-center gap-2 text-base">Explore Serums</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ======== SECTION 2: NATURAL INGREDIENTS ======== -->
-    <section id="natural" class="py-20 bg-white dark:bg-[#0F0A0A]">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="section-badge">From Nature</span>
-                <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Natural <span class="text-[#EC4899]">Ingredients</span></h2>
-                <div class="section-divider"></div>
-                <p class="text-[#831843]/60 dark:text-[#FDF2F8]/60">We source only the finest botanical extracts for your skincare.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <div class="ingredient-card !p-0 overflow-hidden flex flex-col">
-                    <img src="assets/aloe_vera.jpg" alt="Aloe Vera" class="w-full h-48 object-cover">
-                    <div class="p-6 text-center flex-1">
-                        <div class="icon-wrap -mt-12 relative z-10 bg-white dark:bg-[#1A0A0A] border-4 border-white dark:border-[#1A0A0A] mx-auto"><i class="fas fa-leaf"></i></div>
-                        <h4 class="font-bold text-[#831843] dark:text-white mt-2">Aloe Vera</h4>
-                        <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">Soothes and hydrates, rich in vitamins and antioxidants for skin repair.</p>
-                    </div>
-                </div>
-                <div class="ingredient-card !p-0 overflow-hidden flex flex-col">
-                    <img src="assets/green_tea.jpg" alt="Green Tea" class="w-full h-48 object-cover">
-                    <div class="p-6 text-center flex-1">
-                        <div class="icon-wrap -mt-12 relative z-10 bg-white dark:bg-[#1A0A0A] border-4 border-white dark:border-[#1A0A0A] mx-auto"><i class="fas fa-seedling"></i></div>
-                        <h4 class="font-bold text-[#831843] dark:text-white mt-2">Green Tea</h4>
-                        <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">Powerful antioxidant that protects against environmental damage and reduces inflammation.</p>
-                    </div>
-                </div>
-                <div class="ingredient-card !p-0 overflow-hidden flex flex-col">
-                    <img src="assets/rosehip_oil.jpg" alt="Rosehip Oil" class="w-full h-48 object-cover">
-                    <div class="p-6 text-center flex-1">
-                        <div class="icon-wrap -mt-12 relative z-10 bg-white dark:bg-[#1A0A0A] border-4 border-white dark:border-[#1A0A0A] mx-auto"><i class="fas fa-droplet"></i></div>
-                        <h4 class="font-bold text-[#831843] dark:text-white mt-2">Rosehip Oil</h4>
-                        <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">Rich in essential fatty acids and vitamins that rejuvenate and brighten skin.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======== SECTION 3: ACTIVE INGREDIENTS (with icons) ======== -->
-    <section id="active" class="py-20 bg-[#FDF2F8] dark:bg-[#0F0A0A]">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="section-badge">Science-Backed</span>
-                <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Active <span class="text-[#EC4899]">Ingredients</span></h2>
-                <div class="section-divider"></div>
-                <p class="text-[#831843]/60 dark:text-[#FDF2F8]/60">Clinically proven active ingredients for visible results.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <div class="ingredient-card !p-0 overflow-hidden flex flex-col">
-                    <img src="assets/vitamin_c.jpg" alt="Vitamin C" class="w-full h-48 object-cover">
-                    <div class="p-6 text-center flex-1">
-                        <div class="icon-wrap -mt-12 relative z-10 bg-white dark:bg-[#1A0A0A] border-4 border-white dark:border-[#1A0A0A] mx-auto"><i class="fas fa-flask"></i></div>
-                        <h4 class="font-bold text-[#831843] dark:text-white mt-2">Vitamin C</h4>
-                        <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">Brightens skin, reduces hyperpigmentation, and boosts collagen production.</p>
-                    </div>
-                </div>
-                <div class="ingredient-card !p-0 overflow-hidden flex flex-col">
-                    <img src="assets/hyaluronic_acid.jpg" alt="Hyaluronic Acid" class="w-full h-48 object-cover">
-                    <div class="p-6 text-center flex-1">
-                        <div class="icon-wrap -mt-12 relative z-10 bg-white dark:bg-[#1A0A0A] border-4 border-white dark:border-[#1A0A0A] mx-auto"><i class="fas fa-microscope"></i></div>
-                        <h4 class="font-bold text-[#831843] dark:text-white mt-2">Hyaluronic Acid</h4>
-                        <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">Holds up to 1000x its weight in water, delivering intense hydration and plumpness.</p>
-                    </div>
-                </div>
-                <div class="ingredient-card !p-0 overflow-hidden flex flex-col">
-                    <img src="assets/retinol.jpg" alt="Retinol" class="w-full h-48 object-cover">
-                    <div class="p-6 text-center flex-1">
-                        <div class="icon-wrap -mt-12 relative z-10 bg-white dark:bg-[#1A0A0A] border-4 border-white dark:border-[#1A0A0A] mx-auto"><i class="fas fa-atom"></i></div>
-                        <h4 class="font-bold text-[#831843] dark:text-white mt-2">Retinol</h4>
-                        <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">The gold standard for anti-aging — stimulates cell turnover and reduces fine lines.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======== SECTION 4: INGREDIENT BENEFITS ======== -->
-    <section id="benefits" class="py-20 bg-white dark:bg-[#0F0A0A]">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="section-badge">Why They Work</span>
-                <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Ingredient <span class="text-[#EC4899]">Benefits</span></h2>
-                <div class="section-divider"></div>
-                <p class="text-[#831843]/60 dark:text-[#FDF2F8]/60">Each ingredient is carefully selected for its unique skin benefits.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                <div class="benefit-card">
-                    <div class="icon-wrap"><i class="fas fa-shield-alt"></i></div>
-                    <h4 class="font-bold text-[#831843] dark:text-white">Antioxidant Protection</h4>
-                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">Ingredients like Vitamin C and Green Tea neutralize free radicals, preventing premature aging and environmental damage.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon-wrap"><i class="fas fa-water"></i></div>
-                    <h4 class="font-bold text-[#831843] dark:text-white">Deep Hydration</h4>
-                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">Hyaluronic Acid and Aloe Vera attract moisture to the skin, keeping it plump, smooth, and youthful.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon-wrap"><i class="fas fa-sun"></i></div>
-                    <h4 class="font-bold text-[#831843] dark:text-white">Brightening &amp; Even Tone</h4>
-                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">Vitamin C and Rosehip Oil work together to reduce dark spots and give your skin a natural, radiant glow.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon-wrap"><i class="fas fa-clock"></i></div>
-                    <h4 class="font-bold text-[#831843] dark:text-white">Anti-Aging Renewal</h4>
-                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">Retinol stimulates collagen production and accelerates cell turnover, reducing the appearance of fine lines and wrinkles.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======== SECTION 5: INGREDIENT COMPARISON ======== -->
-    <section class="py-20 bg-[#FDF2F8] dark:bg-[#0F0A0A]">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="section-badge">Compare</span>
-                <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Ingredient <span class="text-[#EC4899]">Comparison</span></h2>
-                <div class="section-divider"></div>
-                <p class="text-[#831843]/60 dark:text-[#FDF2F8]/60">Understanding the difference between key ingredients.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
-                <div class="comparison-card">
-                    <h4 class="font-bold text-[#EC4899] text-lg mb-2">Vitamin C vs. Retinol</h4>
-                    <p class="text-sm text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed min-h-[6.5rem]">
-                        <strong>Vitamin C</strong> is a powerful antioxidant that brightens skin and protects against environmental damage. It's ideal for morning use to defend against free radicals.
+    <!-- ======== SECTION 2: CLEANSERS ======== -->
+    <section id="cleansers" class="py-20 bg-white dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6 max-w-6xl">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div class="order-2 lg:order-1">
+                    <span class="section-badge">Step 1</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Gentle <span class="text-[#EC4899]">Cleansers</span></h2>
+                    <div class="section-divider"></div>
+                    <p class="text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed">
+                        Start your routine with our range of gentle, effective cleansers. Formulated to remove impurities without stripping your skin's natural moisture barrier.
                     </p>
-                    <p class="text-sm text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed pt-2">
-                        <strong>Retinol</strong> is a vitamin A derivative that accelerates cell turnover and stimulates collagen. Best used at night for anti-aging and skin renewal. Together, they create a powerful skincare duo.
-                    </p>
+                    <div class="features mt-4 flex flex-wrap gap-2">
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🌿 Hydrating</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🧼 Gentle</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">💧 pH Balanced</span>
+                    </div>
+                    <div class="mt-4 text-[#831843] dark:text-[#FDF2F8] font-bold text-xl">$18.00</div>
+                    <div class="text-[#831843]/60 dark:text-[#FDF2F8]/60 text-xs mb-4">150ml / 5.0 fl oz</div>
+                    <a href="#" class="btn-primary px-6 py-2.5 rounded-full inline-flex items-center gap-2 text-sm shadow-lg shadow-[#EC4899]/25"><i class="fas fa-shopping-bag"></i> Buy Now</a>
                 </div>
-                <div class="comparison-card">
-                    <h4 class="font-bold text-[#EC4899] text-lg mb-2">Hyaluronic Acid vs. Rosehip Oil</h4>
-                    <p class="text-sm text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed min-h-[6.5rem]">
-                        <strong>Hyaluronic Acid</strong> is a humectant that draws moisture into the skin, providing intense hydration without clogging pores. Perfect for all skin types.
-                    </p>
-                    <p class="text-sm text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed pt-2">
-                        <strong>Rosehip Oil</strong> is a nourishing oil rich in essential fatty acids and vitamins. It helps repair skin, fade scars, and restore the skin's natural barrier.
-                    </p>
+                <div class="order-1 lg:order-2">
+                    <div class="category-card" style="border-color: transparent;">
+                        <div class="category-image" style="background-image: url('assets/shop_cleanser.jpg'); border-radius: 20px; aspect-ratio: 1 / 1; background-size: cover; background-position: center;"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ======== SECTION 6: SAFE & CLEAN BEAUTY ======== -->
-    <section id="clean" class="py-20 bg-white dark:bg-[#0F0A0A]">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="section-badge">Clean Beauty</span>
-                <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Safe &amp; <span class="text-[#EC4899]">Clean Beauty</span></h2>
-                <div class="section-divider"></div>
-                <p class="text-[#831843]/60 dark:text-[#FDF2F8]/60">Our commitment to safe, ethical, and transparent skincare.</p>
+    <!-- ======== SECTION 3: SERUMS ======== -->
+    <section id="serums" class="py-20 bg-[#FDF2F8] dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6 max-w-6xl">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div>
+                    <div class="category-card" style="border-color: transparent;">
+                        <div class="category-image" style="background-image: url('assets/shop_serum.jpg'); border-radius: 20px; aspect-ratio: 1 / 1; background-size: cover; background-position: center;"></div>
+                    </div>
+                </div>
+                <div>
+                    <span class="section-badge">Step 2</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Potent <span class="text-[#EC4899]">Serums</span></h2>
+                    <div class="section-divider"></div>
+                    <p class="text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed">
+                        Target specific skin concerns with our concentrated serums. Packed with active ingredients like Vitamin C, Hyaluronic Acid, and Retinol for visible results.
+                    </p>
+                    <div class="features mt-4 flex flex-wrap gap-2">
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">⚡ Brightening</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">💧 Hydrating</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🔬 Anti-Aging</span>
+                    </div>
+                    <div class="mt-4 text-[#831843] dark:text-[#FDF2F8] font-bold text-xl">$32.00</div>
+                    <div class="text-[#831843]/60 dark:text-[#FDF2F8]/60 text-xs mb-4">30ml / 1.0 fl oz</div>
+                    <a href="#" class="btn-primary px-6 py-2.5 rounded-full inline-flex items-center gap-2 text-sm shadow-lg shadow-[#EC4899]/25"><i class="fas fa-shopping-bag"></i> Buy Now</a>
+                </div>
             </div>
-            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <div class="clean-card">
-                    <div class="icon-wrap"><i class="fas fa-ban"></i></div>
-                    <h4 class="font-bold text-[#831843] dark:text-white">No Harmful Chemicals</h4>
-                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">We never use parabens, sulfates, phthalates, or synthetic fragrances in our formulas.</p>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 4: MOISTURIZERS ======== -->
+    <section id="moisturizers" class="py-20 bg-white dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6 max-w-6xl">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div class="order-2 lg:order-1">
+                    <span class="section-badge">Step 3</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Nourishing <span class="text-[#EC4899]">Moisturizers</span></h2>
+                    <div class="section-divider"></div>
+                    <p class="text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed">
+                        Lock in hydration and protect your skin with our luxurious moisturizers. From lightweight gels to rich creams, find your perfect match.
+                    </p>
+                    <div class="features mt-4 flex flex-wrap gap-2">
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🧴 Deep Hydration</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🌿 Soothing</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">✨ Radiant Glow</span>
+                    </div>
+                    <div class="mt-4 text-[#831843] dark:text-[#FDF2F8] font-bold text-xl">$28.00</div>
+                    <div class="text-[#831843]/60 dark:text-[#FDF2F8]/60 text-xs mb-4">50ml / 1.7 fl oz</div>
+                    <a href="#" class="btn-primary px-6 py-2.5 rounded-full inline-flex items-center gap-2 text-sm shadow-lg shadow-[#EC4899]/25"><i class="fas fa-shopping-bag"></i> Buy Now</a>
                 </div>
-                <div class="clean-card">
-                    <div class="icon-wrap"><i class="fas fa-heart"></i></div>
-                    <h4 class="font-bold text-[#831843] dark:text-white">Cruelty-Free &amp; Vegan</h4>
-                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">All products are 100% cruelty-free and vegan, certified by leading ethical organizations.</p>
-                </div>
-                <div class="clean-card">
-                    <div class="icon-wrap"><i class="fas fa-recycle"></i></div>
-                    <h4 class="font-bold text-[#831843] dark:text-white">Sustainable &amp; Ethical</h4>
-                    <p class="text-sm text-[#831843]/60 dark:text-[#FDF2F8]/60 mt-1">We use sustainable packaging and source ingredients responsibly to protect our planet.</p>
+                <div class="order-1 lg:order-2">
+                    <div class="category-card" style="border-color: transparent;">
+                        <div class="category-image" style="background-image: url('assets/shop_moisturizer.jpg'); border-radius: 20px; aspect-ratio: 1 / 1; background-size: cover; background-position: center;"></div>
+                    </div>
                 </div>
             </div>
-            <div class="text-center mt-10">
-                <a href="shop.html" class="btn-primary px-8 py-3 rounded-full inline-flex items-center gap-2 text-sm shadow-lg shadow-[#EC4899]/25">Shop Clean Beauty</a>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 5: SUNSCREENS ======== -->
+    <section id="sunscreens" class="py-20 bg-[#FDF2F8] dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6 max-w-6xl">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div>
+                    <div class="category-card" style="border-color: transparent;">
+                        <div class="category-image" style="background-image: url('assets/shop_mask.jpg'); border-radius: 20px; aspect-ratio: 1 / 1; background-size: cover; background-position: center;"></div>
+                    </div>
+                </div>
+                <div>
+                    <span class="section-badge">Step 4</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Protective <span class="text-[#EC4899]">Sunscreens</span></h2>
+                    <div class="section-divider"></div>
+                    <p class="text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed">
+                        Shield your skin from harmful UV rays with our broad-spectrum sunscreens. Lightweight, non-greasy formulas that provide all-day protection.
+                    </p>
+                    <div class="features mt-4 flex flex-wrap gap-2">
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">☀️ SPF 50+</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🌊 Water-Resistant</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🧴 Non-Greasy</span>
+                    </div>
+                    <div class="mt-4 text-[#831843] dark:text-[#FDF2F8] font-bold text-xl">$22.00</div>
+                    <div class="text-[#831843]/60 dark:text-[#FDF2F8]/60 text-xs mb-4">50ml / 1.7 fl oz</div>
+                    <a href="#" class="btn-primary px-6 py-2.5 rounded-full inline-flex items-center gap-2 text-sm shadow-lg shadow-[#EC4899]/25"><i class="fas fa-shopping-bag"></i> Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== SECTION 6: FACE MASKS ======== -->
+    <section class="py-20 bg-white dark:bg-[#0F0A0A]">
+        <div class="container mx-auto px-4 md:px-6 max-w-6xl">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div class="order-2 lg:order-1">
+                    <span class="section-badge">Step 5</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-[#831843] dark:text-white">Revitalizing <span class="text-[#EC4899]">Face Masks</span></h2>
+                    <div class="section-divider"></div>
+                    <p class="text-[#831843]/70 dark:text-[#FDF2F8]/70 leading-relaxed">
+                        Treat your skin to a weekly boost with our range of face masks. From clay to sheet masks, each formula is designed to address specific skin needs.
+                    </p>
+                    <div class="features mt-4 flex flex-wrap gap-2">
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">🧖‍♀️ Deep Cleanse</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">💧 Hydrating</span>
+                        <span class="bg-[#FDF2F8] dark:bg-[#2A1A1A] px-3 py-1 rounded-full text-xs font-medium text-[#831843] dark:text-[#FDF2F8]">✨ Brightening</span>
+                    </div>
+                    <div class="mt-4 text-[#831843] dark:text-[#FDF2F8] font-bold text-xl">$15.00</div>
+                    <div class="text-[#831843]/60 dark:text-[#FDF2F8]/60 text-xs mb-4">Box of 5 Sheets</div>
+                    <a href="#" class="btn-primary px-6 py-2.5 rounded-full inline-flex items-center gap-2 text-sm shadow-lg shadow-[#EC4899]/25"><i class="fas fa-shopping-bag"></i> Buy Now</a>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="category-card" style="border-color: transparent;">
+                        <div class="category-image" style="background-image: url('assets/shop_sunscreen.jpg'); border-radius: 20px; aspect-ratio: 1 / 1; background-size: cover; background-position: center;"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
